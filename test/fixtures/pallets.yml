@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  origin_cc: MyString
+  destination_cc: MyString
+  current_location: MyString
+  next_location: MyString
+  vendor_code: MyString
+  number_of_pallets: 1
+
+two:
+  origin_cc: MyString
+  destination_cc: MyString
+  current_location: MyString
+  next_location: MyString
+  vendor_code: MyString
+  number_of_pallets: 1

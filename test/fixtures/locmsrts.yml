@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cost_ctr: MyString
+  location: MyString
+  loc_type: MyString
+
+two:
+  cost_ctr: MyString
+  location: MyString
+  loc_type: MyString

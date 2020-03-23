@@ -1,0 +1,52 @@
+<%= form_with(model: pallet, local: true) do |form| %>
+  <% if pallet.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(pallet.errors.count, "error") %> prohibited this pallet from being saved:</h2>
+
+      <ul>
+      <% pallet.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :origin_cc, 'Origin CC' %>
+    <%= form.select :origin_cc, $cost_centers, {}, {:value => params[:origin_cc], id: :pallet_origin_cc} %>
+  </div>
+
+  <div class="field">
+    <%= form.label :destination_cc, 'Destination CC' %>
+    <%= form.select :destination_cc, $cost_centers, {}, {:value => params[:destination_cc], id: :pallet_destination_cc} %>
+  </div>
+
+  <div class="field">
+    <%= form.label :current_location %>
+    <%= form.select :current_location, $locations, {}, {:value => params[:current_location], id: :pallet_current_location} %>
+  </div>
+
+  <div class="field">
+    <%= form.label :next_location %>
+    <%= form.select :next_location, $locations, {}, {:value => params[:next_location], id: :pallet_next_location} %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vendor_code, "Vendor" %>
+    <%= form.select :vendor_code, $vendors, {}, {:value => params[:vendor_code], id: :pallet_vendor_code} %>
+  </div>
+
+  <div class="field">
+    <%= form.label :number_of_pallets %>
+    <% if @edit %>
+      <%= form.number_field :number_of_pallets, min: 1, max: 99, disabled: true, id: :pallet_number_of_pallets %>
+    <% else %>
+      <%= form.number_field :number_of_pallets, min: 1, max: 99, id: :pallet_number_of_pallets %>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<br>

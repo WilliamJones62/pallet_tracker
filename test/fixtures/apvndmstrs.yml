@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  vend_code: MyString
+  vend_name: MyString
+  vend_status: MyString
+
+two:
+  vend_code: MyString
+  vend_name: MyString
+  vend_status: MyString

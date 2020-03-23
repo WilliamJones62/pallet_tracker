@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Pallets</h1>
+
+<table id="normal_dt"  class="stripe" class="mytable" class="display" cellspacing="0" >
+  <thead>
+    <tr>
+      <th>Pallet Number</th>
+      <th>Origin CC</th>
+      <th>Destination CC</th>
+      <th>Current location</th>
+      <th>Vendor</th>
+      <th>Create Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pallets.each do |pallet| %>
+      <tr>
+        <td><%= pallet.id.to_s %></td>
+        <td><%= pallet.origin_cc %></td>
+        <td><%= pallet.destination_cc %></td>
+        <td><%= pallet.current_location %></td>
+        <td><%= pallet.vendor_code %></td>
+        <td> <%= display_date(pallet.created_at) %> </td>
+        <td><%= link_to 'Print', pallet_path(pallet, format: "pdf"), class: "btn btn-primary" %></td>
+        <td><%= link_to 'Edit', edit_pallet_path(pallet), class: "btn btn-primary" %></td>
+        <td><%= link_to 'Delete', pallet, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pallet', new_pallet_path, class: "btn btn-primary" %>
