@@ -62,4 +62,4 @@ gem 'prawn'
 gem 'barby', require: %w(barby barby/barcode/code_39 barby/outputter/prawn_outputter)
 # gem 'barby', require: %w(barby barby/barcode/code_39 barby/outputter/pdfwriter_outputter)
 # gem 'barby', require: %w(barby barby/barcode/code_128 barby/outputter/png_outputter)
-gem 'rake', '12.3.2'
+gem 'rake', '12.3.3'
