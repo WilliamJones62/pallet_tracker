@@ -14,10 +14,12 @@ class PalletsController < ApplicationController
   end
 
   def new
+    @due_out = Time.current.tomorrow.strftime('%Y-%m-%d')
     @pallet = Pallet.new
   end
 
   def edit
+    @due_out = @pallet.due_out.strftime('%Y-%m-%d')
   end
 
   def create
@@ -84,6 +86,6 @@ class PalletsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def pallets_params
-      params.require(:pallet).permit(:origin_cc, :destination_cc, :current_location, :next_location, :vendor_code, :number_of_pallets)
+      params.require(:pallet).permit(:origin_cc, :destination_cc, :current_location, :next_location, :vendor_code, :number_of_pallets, :due_out)
     end
 end
