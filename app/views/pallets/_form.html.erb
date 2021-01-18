@@ -11,10 +11,24 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :origin_cc, 'Origin CC' %>
-    <%= form.select :origin_cc, $cost_centers, {}, {:value => params[:origin_cc], id: :pallet_origin_cc} %>
-  </div>
+  <% if @new %>
+    <div class="field">
+      <%= form.label :origin_cc, 'Origin CC' %>
+      <%= form.select :origin_cc, $cost_centers, {}, {:value => params[:origin_cc], id: :pallet_origin_cc, :onchange=> ("updateNewLocation()")} %>
+    </div>
+  <% else %>
+    <div class="field">
+      <%= form.label :origin_cc, 'Origin CC' %>
+      <%= form.text_field :origin_cc, readonly: true, id: :pallet_origin_cc %>
+    </div>
+  <% end %>
+
+  <% if !@new %>
+    <div class="field">
+      <%= form.label :current_cc, 'Current CC' %>
+      <%= form.select :current_cc, $cost_centers, {}, {:value => params[:current_cc], id: :pallet_current_cc} %>
+    </div>
+  <% end %>
 
   <div class="field">
     <%= form.label :destination_cc, 'Destination CC' %>
@@ -23,35 +37,43 @@
 
   <div class="field">
     <%= form.label :current_location %>
-    <%= form.select :current_location, $locations, {}, {:value => params[:current_location], id: :pallet_current_location} %>
+    <%= form.select :current_location, @locations, {}, {:value => params[:current_location], id: :pallet_current_location} %>
   </div>
 
   <div class="field">
-    <%= form.label :next_location %>
-    <%= form.select :next_location, $locations, {}, {:value => params[:next_location], id: :pallet_next_location} %>
+    <%= form.label :ict, 'ICT?' %>
+    <%= form.check_box :ict, id: :pallet_ict, :onchange=> ("updateVendor()") %>
   </div>
 
   <div class="field">
     <%= form.label :vendor_code, "Vendor" %>
-    <%= form.select :vendor_code, $vendors, {}, {:value => params[:vendor_code], id: :pallet_vendor_code} %>
-  </div>
-
-  <div class="field">
-    <%= form.label :due_out %>
-    <%= form.date_field :due_out, id: :pallet_due_out, :value => @due_out %>  </div>
-  </div>
-
-  <div class="field">
-    <%= form.label :number_of_pallets %>
-    <% if @edit %>
-      <%= form.number_field :number_of_pallets, min: 1, max: 99, disabled: true, id: :pallet_number_of_pallets %>
+    <% if @ict %>
+      <%= form.select :vendor_code, $dartagnan, {}, {:value => params[:vendor_code], id: :pallet_vendor_code} %>
     <% else %>
-      <%= form.number_field :number_of_pallets, min: 1, max: 99, id: :pallet_number_of_pallets %>
+      <%= form.select :vendor_code, $vendors, {}, {:value => params[:vendor_code], id: :pallet_vendor_code} %>
     <% end %>
   </div>
+
+  <% if !@new %>
+    <div class="field">
+      <%= form.label :due_date %>
+      <%= form.date_field :due_date, id: :pallet_due_date, :value => @due_date %>
+    </div>
+  <% end %>
+
+  <% if @new %>
+    <div class="field">
+      <%= form.label :number_of_pallets %>
+      <%= form.number_field :number_of_pallets, min: 1, max: 99, id: :pallet_number_of_pallets %>
+    </div>
+  <% end %>
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
 <br>
+<p id= "vendors" hidden> <%= $jsvendors %> </p>
+<p id= "jsccs" hidden> <%= $ccs %> </p>
+<p id= "jsloctypes" hidden> <%= $loctypes %> </p>
+<p id= "jslocations" hidden> <%= $locations %> </p>

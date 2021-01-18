@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200603164921) do
+ActiveRecord::Schema.define(version: 20200623165133) do
 
   create_table "apvndmstrs", force: :cascade do |t|
     t.string "vend_code"
@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 20200603164921) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "due_out"
+    t.boolean "ict"
+    t.string "current_cc"
   end
 
 end

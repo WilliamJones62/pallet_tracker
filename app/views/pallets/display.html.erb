@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h3>Showing Pallet</h3>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Origin CC</th>
+      <th>Current Location</th>
+      <th>Destination CC</th>
+      <th>ICT?</th>
+      <th>Vendor</th>
+      <th>Number of Pallets</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td> <%= @pallet.origin_cc  %> </td>
+      <td> <%= @pallet.current_location  %> </td>
+      <td> <%= @pallet.destination_cc  %> </td>
+      <td> <%= human_boolean(@pallet.ict) %> </td>
+      <td> <%= @pallet.vendor_code  %> </td>
+      <td> <%= @pallet.number_of_pallets  %> </td>
+  </tbody>
+</table>
+
+<%= link_to 'Print', pallet_path(@pallet, format: "pdf"), class: "btn btn-primary", target: :_blank %>
+<%= link_to 'Edit', edit_pallet_path(@pallet), class: "btn btn-primary" %>

@@ -16,6 +16,9 @@ class PalletLabel < Prawn::Document
         start_new_page
       end
     end
+    p = Pallet.find(@pallet.id)
+    p.number_of_pallets = 1
+    p.save
   end
 
   def pallet_number
@@ -40,7 +43,7 @@ class PalletLabel < Prawn::Document
 
   def pallet_date
     move_down 20
-    text "Date: "+@pallet.created_at.strftime("%e %b %Y"), size: 30, style: :bold
+    text "Date Created: "+@pallet.created_at.strftime("%e %b %Y"), size: 30, style: :bold
   end
 
   def barcode

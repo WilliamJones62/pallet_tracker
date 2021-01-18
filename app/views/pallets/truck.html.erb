@@ -1,0 +1,45 @@
+<h2>Truck Assignment</h2>
+
+<p id="notice"><%= notice %></p>
+
+<%= button_tag "All Pallets", {id: "toggle_button", :onclick=> ("setToggle()"), class: "btn btn-primary"} %>
+<%= form_with url: pallets_selected_path, local: true, method: 'get' do |f| %>
+  <table>
+    <thead>
+      <tr>
+        <th><%= f.label :cost_center %></th>
+        <th><%= f.label :truck %></th>
+        <th><%= f.label :due_date, 'Load date' %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= f.select :cost_centers, $cost_centers, {}, {id: :cost_centers, :onchange=> ("updatePallet()")}%></td>
+        <td><%= f.select :trucks, @trucks, {}, {id: :trucks}%></td>
+        <td><%= f.date_field :due_date, id: :due_date, :value => @due_date %></td>
+      </tr>
+    </tbody>
+  </table>
+  <table>
+    <thead>
+      <tr>
+        <th><%= f.label :pallet %></th>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= f.select :pallets, @pallets, {}, {multiple: true, id: :pallets, size: "20"}%></td>
+        </tr>
+      </tbody>
+    </table>
+  <%= f.submit "Enter" %>
+<% end %>
+<br>
+
+<%= link_to 'Back', pallets_path, class: "btn btn-primary" %>
+<p id= "jsccs" hidden> <%= $jsccs %> </p>
+<p id= "jspallets" hidden> <%= $jspallets %> </p>
+<p id= "jsdestinationccs" hidden> <%= $jsdestinationccs %> </p>
+<p id= "jscurrentlocations" hidden> <%= $jscurrentlocations %> </p>
+<p id= "jsvendorcodes" hidden> <%= $jsvendorcodes %> </p>
+<p id= "jstrucks" hidden> <%= $jstrucks  %> </p>
+<p id= "jstrucksccs" hidden> <%= $jstrucksccs  %> </p>

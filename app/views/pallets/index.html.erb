@@ -2,12 +2,23 @@
 
 <h1>Pallets</h1>
 
+<h2>Select current cost center</h2>
+
+<%= form_with url: pallets_ccc_path, local: true, method: 'get' do |f| %>
+  <%= f.label(:current_cc, 'Current cost center:') %>
+  <%= f.select(:current_cc, options_for_select($cost_centers, @selected_ccc)) %>
+  <%= f.submit "Change" %>
+<% end %>
+
+<br>
+
 <table id="normal_dt"  class="stripe" class="mytable" class="display" cellspacing="0" >
   <thead>
     <tr>
       <th>Pallet Number</th>
       <th>Origin CC</th>
       <th>Destination CC</th>
+      <th>Current CC</th>
       <th>Current location</th>
       <th>Vendor</th>
       <th>Create Date</th>
@@ -23,10 +34,11 @@
         <td><%= pallet.id.to_s %></td>
         <td><%= pallet.origin_cc %></td>
         <td><%= pallet.destination_cc %></td>
+        <td><%= pallet.current_cc %></td>
         <td><%= pallet.current_location %></td>
         <td><%= pallet.vendor_code %></td>
-        <td> <%= display_date(pallet.created_at) %> </td>
-        <td><%= link_to 'Print', pallet_path(pallet, format: "pdf"), class: "btn btn-primary" %></td>
+        <td><%= display_date(pallet.created_at) %></td>
+        <td><%= link_to 'Print', pallet_path(pallet, format: "pdf"), class: "btn btn-primary", target: :_blank %></td>
         <td><%= link_to 'Edit', edit_pallet_path(pallet), class: "btn btn-primary" %></td>
         <td><%= link_to 'Delete', pallet, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %></td>
       </tr>

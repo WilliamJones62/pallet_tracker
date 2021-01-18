@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<h2>Select a truck</h2>
+
+<%= form_with url: pallets_chosen_path, local: true, method: 'get' do |f| %>
+  <%= f.label(:truck, 'Truck:') %>
+  <%= f.select(:truck, options_for_select(@trucks, @selected_truck)) %>
+  <%= f.submit "Change" %>
+<% end %>
+
+<br>
+
+<table id="normal_dt"  class="stripe" class="mytable" class="display" cellspacing="0" >
+  <thead>
+    <tr>
+      <th>Pallet</th>
+      <th>Origin CC</th>
+      <th>Destination CC</th>
+      <th>Current CC</th>
+      <th>Current location</th>
+      <th>Vendor</th>
+      <th>Due Out Date</th>
+      <th>Create Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% $pallets.each do |pallet| %>
+      <tr>
+        <td><%= pallet.id.to_s %></td>
+        <td><%= pallet.origin_cc %></td>
+        <td><%= pallet.destination_cc %></td>
+        <td><%= pallet.current_cc %></td>
+        <td><%= pallet.current_location %></td>
+        <td><%= pallet.vendor_code %></td>
+        <td><%= display_date(pallet.due_date) %></td>
+        <td><%= display_date(pallet.created_at) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
